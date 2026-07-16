@@ -21,3 +21,4 @@ mac:
   category: public.app-category.finance
   identity: null
 npmRebuild: true
+publish: never
