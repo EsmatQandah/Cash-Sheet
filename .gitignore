@@ -5,3 +5,4 @@ release/
 data/
 *.sqlite
 *.sqlite-journal
+.claude/
