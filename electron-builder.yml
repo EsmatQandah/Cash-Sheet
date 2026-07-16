@@ -18,9 +18,6 @@ portable:
 mac:
   target:
     - target: zip
-      arch:
-        - x64
-        - arm64
   category: public.app-category.finance
   identity: null
 npmRebuild: true

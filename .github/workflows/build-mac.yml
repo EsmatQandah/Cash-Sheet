@@ -7,7 +7,14 @@ on:
 
 jobs:
   build-mac:
-    runs-on: macos-latest
+    strategy:
+      matrix:
+        include:
+          - runner: macos-13
+            arch: x64
+          - runner: macos-14
+            arch: arm64
+    runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@v4
 
@@ -18,11 +25,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build macOS app
-        run: npm run dist:mac
+      - name: Compile app (renderer + main)
+        run: npm run build
+
+      - name: Build macOS app (${{ matrix.arch }})
+        run: npx electron-builder --mac --${{ matrix.arch }}
 
       - name: Upload macOS build
         uses: actions/upload-artifact@v4
         with:
-          name: CashSheet-mac
+          name: CashSheet-mac-${{ matrix.arch }}
           path: release/*.zip
