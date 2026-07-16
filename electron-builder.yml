@@ -1,0 +1,26 @@
+appId: com.solidsolutions.cashsheet
+productName: CashSheet
+directories:
+  output: release
+files:
+  - dist/**
+  - dist-electron/**
+  - package.json
+asarUnpack:
+  - "**/*.node"
+win:
+  target:
+    - target: portable
+      arch:
+        - x64
+portable:
+  artifactName: ${productName}-win-portable.${ext}
+mac:
+  target:
+    - target: zip
+      arch:
+        - x64
+        - arm64
+  category: public.app-category.finance
+  identity: null
+npmRebuild: true
